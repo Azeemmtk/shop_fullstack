@@ -66,4 +66,58 @@ class HomeServices {
       throw Exception('An error occurred: $e');
     }
   }
+
+  Future<void> updateProduct({
+    required Productmodel product,
+    File? imageFile,
+  }) async {
+    final Uri url =
+        Uri.parse('$baseurl/api/product/updateProduct/${product.sId}');
+    final request = http.MultipartRequest('PUT', url)
+      ..fields['name'] = product.name ?? ''
+      ..fields['category'] = product.category ?? ''
+      ..fields['price'] = product.price.toString()
+      ..fields['details'] = product.details ?? ''
+      ..fields['size'] = product.size.toString()
+      ..fields['colour'] = product.colour ?? '';
+
+    if (imageFile != null) {
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          imageFile.path,
+          filename: imageFile.path.split('/').last,
+        ),
+      );
+    }
+
+    try {
+      final response = await request.send();
+      if (response.statusCode == 200) {
+        print('Product updated successfully');
+      } else {
+        print('Failed to update product: ${response.statusCode}');
+        throw Exception('Failed to update product');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+      throw Exception('An error occurred: $e');
+    }
+  }
+
+  Future<void> deleteProduct(String productId) async {
+    final Uri url = Uri.parse('$baseurl/api/product/deleteProduct/$productId');
+
+    try {
+      final response = await http.delete(url);
+
+      if (response.statusCode == 200) {
+        print('Product deleted successfully');
+      } else {
+        throw Exception('Failed to delete product');
+      }
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 }

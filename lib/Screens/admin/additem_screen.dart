@@ -10,14 +10,14 @@ import '../../model/product_model.dart';
 import '../../utils/contants.dart';
 import '../../view_model/home_view_model.dart';
 
-class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
+class AdditemScreen extends StatefulWidget {
+  const AdditemScreen({super.key});
 
   @override
-  State<AdminScreen> createState() => _AdminScreenState();
+  State<AdditemScreen> createState() => _AdminScreenState();
 }
 
-class _AdminScreenState extends State<AdminScreen> {
+class _AdminScreenState extends State<AdditemScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _detailsController = TextEditingController();
@@ -25,10 +25,10 @@ class _AdminScreenState extends State<AdminScreen> {
   TextEditingController _sizeController = TextEditingController();
   XFile? image;
 
-  final ImagePicker picker = ImagePicker();
   bool selectTv1 = false;
   bool selectTv2 = false;
   String type = '';
+  final ImagePicker picker = ImagePicker();
 
   void _getFromCamera() async {
     image =
@@ -58,7 +58,7 @@ class _AdminScreenState extends State<AdminScreen> {
         ),
         title: Row(
           children: [
-            SizedBox(width: 130),
+            SizedBox(width: 70),
             Text(
               'Add items',
               style: TextStyle(
@@ -178,7 +178,10 @@ class _AdminScreenState extends State<AdminScreen> {
                         ],
                       ),
                       const SizedBox(height: 40),
-                      Addtextfield(name: 'name', controller: _nameController),
+                      Addtextfield(
+                        name: 'name',
+                        controller: _nameController,
+                      ),
                       const SizedBox(height: 20),
                       Addtextfield(name: 'price', controller: _priceController),
                       const SizedBox(height: 20),
@@ -251,7 +254,7 @@ class _AdminScreenState extends State<AdminScreen> {
                               colour: _colorController.text,
                               details: _detailsController.text,
                               price: int.parse(_priceController.text),
-                              size: int.parse(_sizeController.text),
+                              size: _sizeController.text,
                             );
 
                             provider.addProduct(

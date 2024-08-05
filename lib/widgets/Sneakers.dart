@@ -59,9 +59,12 @@ class Sneakers extends StatelessWidget {
                     SizedBox(
                       height: 130,
                       width: 130,
-                      child: Image.network(
-                        provider.sneakers[index].image ?? 'image',
-                        fit: BoxFit.contain,
+                      child: Hero(
+                        tag: provider.sneakers[index].image!,
+                        child: Image.network(
+                          provider.sneakers[index].image ?? 'image',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     Text(provider.sneakers[index].name ?? 'name'),

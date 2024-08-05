@@ -56,7 +56,7 @@ class _SignupState extends State<Signup> {
               Customtextfield(
                 contoller: _namecontroller,
                 hint: 'Name',
-                visibility: false,
+                hidetext: false,
               ),
               SizedBox(
                 height: 10,
@@ -67,7 +67,7 @@ class _SignupState extends State<Signup> {
               ),
               Customtextfield(
                 hint: 'Enter user name',
-                visibility: false,
+                hidetext: false,
                 contoller: _usernamecontroller,
               ),
               const SizedBox(
@@ -82,7 +82,7 @@ class _SignupState extends State<Signup> {
               ),
               Customtextfield(
                 hint: 'Enter email',
-                visibility: false,
+                hidetext: false,
                 contoller: _emailcontroller,
               ),
               const SizedBox(
@@ -94,7 +94,7 @@ class _SignupState extends State<Signup> {
               ),
               Customtextfield(
                 hint: 'Enter Phone',
-                visibility: false,
+                hidetext: false,
                 contoller: _phonecontroller,
               ),
               const Text(
@@ -106,7 +106,7 @@ class _SignupState extends State<Signup> {
               ),
               Customtextfield(
                 hint: 'enter password',
-                visibility: true,
+                hidetext: true,
                 contoller: _passcontroller,
                 suffix: IconButton(
                     onPressed: () {},

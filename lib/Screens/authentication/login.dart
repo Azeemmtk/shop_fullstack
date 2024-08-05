@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store/Screens/admin/admin_screen.dart';
+import 'package:store/Screens/admin/admin_home_screen.dart';
 import 'package:store/Screens/authentication/register.dart';
 import 'package:store/view_model/auth_viewmodel.dart';
 
@@ -17,6 +17,7 @@ class Signin extends StatefulWidget {
 class _SigninState extends State<Signin> {
   TextEditingController _usnamecontroller = TextEditingController();
   TextEditingController _passcontroller = TextEditingController();
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _SigninState extends State<Signin> {
               Customtextfield(
                   contoller: _usnamecontroller,
                   hint: 'Enter user name',
-                  visibility: false),
+                  hidetext: false),
               const SizedBox(
                 height: 20,
               ),
@@ -71,10 +72,16 @@ class _SigninState extends State<Signin> {
               Customtextfield(
                 contoller: _passcontroller,
                 hint: 'Enter password',
-                visibility: true,
+                hidetext: !_passwordVisible,
                 suffix: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.eye_slash)),
+                    onPressed: () {
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                    icon: Icon(_passwordVisible
+                        ? CupertinoIcons.eye
+                        : CupertinoIcons.eye_slash)),
               ),
               Align(
                   alignment: Alignment.centerRight,
@@ -108,7 +115,7 @@ class _SigninState extends State<Signin> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AdminScreen(),
+                                      builder: (context) => AdminHomeScreen(),
                                     ));
                               } else {
                                 value.login(

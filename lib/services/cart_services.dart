@@ -37,6 +37,34 @@ class CartService {
     }
   }
 
+  Future<List<CartModel>> viewAllCarts() async {
+    final Uri url = Uri.parse('$baseurl/api/cart/viewAllCarts');
+
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+
+        print('response----${response.body}');
+
+        if (data['data'] is List) {
+          var cartList = (data['data'] as List)
+              .map((item) => CartModel.fromJson(item as Map<String, dynamic>))
+              .toList();
+          print('cartlist-----$cartList');
+
+          return cartList;
+        } else {
+          throw Exception('The key "data" is missing or the list is null');
+        }
+      } else {
+        throw Exception('Failed to load all carts');
+      }
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
+
   // Fetch cart contents for a user
   Future<List<CartModel>> getCartContents(String userid) async {
     final Uri url = Uri.parse('$baseurl/api/cart/viewCart/$userid');
@@ -132,6 +160,30 @@ class CartService {
         print('Quantity decreased successfully');
       } else {
         throw Exception('Failed to decrease quantity');
+      }
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
+
+  // Update cart item
+  Future<void> updateCart({
+    required String cartItemId,
+    required Map<String, dynamic> updatedData,
+  }) async {
+    final Uri url = Uri.parse('$baseurl/api/cart/updateCart/$cartItemId');
+
+    try {
+      final response = await http.put(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(updatedData),
+      );
+
+      if (response.statusCode == 200) {
+        print('Cart item updated successfully');
+      } else {
+        throw Exception('Failed to update cart item');
       }
     } catch (e) {
       throw Exception('An error occurred: $e');

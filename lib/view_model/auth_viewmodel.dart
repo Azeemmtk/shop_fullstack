@@ -52,4 +52,35 @@ class AuthViewmodel extends ChangeNotifier {
       // Handle login error
     }
   }
+
+  Map<String, String>? userDetails;
+
+  Future<void> fetchUserDetails(String userid, BuildContext context) async {
+    loading = true;
+    notifyListeners();
+
+    try {
+      if (userid != null) {
+        final details = await _authservice.fetchUserDetails(userid);
+        userDetails = {
+          'username': details['username'] ?? '',
+          'name': details['name'] ?? '',
+          'email': details['email'] ?? '',
+          'phone': details['phone']?.toString() ?? '',
+          'role': details['role']?.toString() ?? '',
+        };
+        print(userDetails);
+        notifyListeners();
+      } else {
+        throw Exception('User ID is not available.');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Failed to fetch user details: $e"),
+      ));
+    } finally {
+      loading = false;
+      notifyListeners();
+    }
+  }
 }

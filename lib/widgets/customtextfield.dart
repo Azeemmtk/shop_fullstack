@@ -4,12 +4,12 @@ class Customtextfield extends StatelessWidget {
   Customtextfield(
       {super.key,
       required this.hint,
-      required this.visibility,
+      required this.hidetext,
       this.suffix,
       this.prefix,
       this.contoller});
 
-  bool visibility;
+  bool hidetext;
   String hint;
   Widget? suffix;
   Widget? prefix;
@@ -19,7 +19,7 @@ class Customtextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: contoller,
-      obscureText: visibility,
+      obscureText: hidetext,
       decoration: InputDecoration(
           hintText: hint,
           labelStyle: TextStyle(color: Colors.black),

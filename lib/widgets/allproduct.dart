@@ -5,10 +5,23 @@ import '../Screens/details_screen.dart';
 import '../utils/contants.dart';
 import '../view_model/home_view_model.dart';
 
-class allproduct extends StatelessWidget {
-  const allproduct({
-    super.key,
-  });
+class AllProduct extends StatefulWidget {
+  const AllProduct({super.key});
+
+  @override
+  State<AllProduct> createState() => _AllProductState();
+}
+
+class _AllProductState extends State<AllProduct> {
+  late List<bool> isClickedList;
+
+  @override
+  void initState() {
+    super.initState();
+    final provider = context.read<HomeViewModel>();
+    // Initialize the isClickedList based on the number of products
+    isClickedList = List<bool>.filled(provider.products.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +64,31 @@ class allproduct extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(
-                          Icons.favorite_border,
-                          color: Colors.black,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isClickedList[index] = !isClickedList[index];
+                            });
+                          },
+                          child: Icon(
+                              isClickedList[index]
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: isClickedList[index]
+                                  ? Colors.red
+                                  : Colors.black),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: 130,
                       width: 130,
-                      child: Image.network(
-                        provider.products[index].image ?? 'name',
-                        fit: BoxFit.contain,
+                      child: Hero(
+                        tag: provider.products[index].image!,
+                        child: Image.network(
+                          provider.products[index].image ?? 'name',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     Text(provider.products[index].name ?? 'name'),

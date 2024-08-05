@@ -82,8 +82,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 width: 220,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle, color: Colors.red.shade100),
-                child: Image.network(
-                  data[widget.index].image ?? 'image',
+                child: Hero(
+                  tag: data[widget.index].image!,
+                  child: Image.network(
+                    data[widget.index].image ?? 'image',
+                  ),
                 ),
               )
             ],

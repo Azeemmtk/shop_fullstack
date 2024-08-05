@@ -68,4 +68,21 @@ class Authservice {
       throw Exception('An error occurred during login');
     }
   }
+
+  Future<Map<String, dynamic>> fetchUserDetails(String id) async {
+    final Uri url = Uri.parse('$baseurl/api/auth/userdetails/$id');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData['data'];
+      } else {
+        throw Exception(
+            'Failed to fetch user details. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error during fetching user details: $e');
+      throw Exception('An error occurred during fetching user details');
+    }
+  }
 }

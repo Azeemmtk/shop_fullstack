@@ -8,6 +8,9 @@ class CartViewModel extends ChangeNotifier {
   bool loading = false;
   List<CartModel> cartItems = [];
   List<Productmodel> cartData = [];
+  List<CartModel> allcartData = [];
+  List<CartModel> deliveredData = [];
+  List<CartModel> pendingData = [];
 
   final _cartService = CartService();
 
@@ -38,6 +41,39 @@ class CartViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> fetchAllCarts(BuildContext context) async {
+    loading = true;
+    notifyListeners();
+
+    try {
+      // Fetch all carts
+      allcartData = await _cartService.viewAllCarts();
+      print('viewss------$allcartData');
+
+      // Clear previous lists
+      deliveredData.clear();
+      pendingData.clear();
+
+      // Separate carts into delivered and pending based on status
+      for (var cart in allcartData) {
+        if (cart.status == 'Delivered') {
+          deliveredData.add(cart);
+        } else {
+          pendingData.add(cart);
+        }
+      }
+
+      notifyListeners();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Failed to fetch all carts: $e"),
+      ));
+    } finally {
+      loading = false;
+      notifyListeners();
+    }
+  }
+
   // Fetch cart contents for a user
   Future<void> fetchCartContents(String userid, BuildContext context) async {
     loading = true;
@@ -46,15 +82,12 @@ class CartViewModel extends ChangeNotifier {
     try {
       // Fetch cart contents
       cartItems = await _cartService.getCartContents(userid);
-
       // Clear previous cartData
       cartData.clear();
-
       // Populate cartData with the latest items
       for (var cartItem in cartItems) {
         cartData.add(cartItem.productid!);
       }
-
       notifyListeners();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -127,6 +160,35 @@ class CartViewModel extends ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Failed to decrease quantity: $e"),
       ));
+    }
+  }
+
+  // Update cart item
+  Future<void> updateCart({
+    required String cartItemId,
+    required Map<String, dynamic> updatedData,
+    required BuildContext context,
+  }) async {
+    try {
+      loading = true;
+      notifyListeners();
+
+      await _cartService.updateCart(
+          cartItemId: cartItemId, updatedData: updatedData);
+
+      // Optionally, refresh the cart contents
+      await fetchCartContents(cartItems.first.userid!, context);
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Cart item updated successfully"),
+      ));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Failed to update cart item: $e"),
+      ));
+    } finally {
+      loading = false;
+      notifyListeners();
     }
   }
 }

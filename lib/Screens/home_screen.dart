@@ -80,7 +80,7 @@ class _HomescreenState extends State<Homescreen> {
                         height: 4,
                       ),
                       selectedIndex == 0
-                          ? allproduct()
+                          ? AllProduct()
                           : selectedIndex == 1
                               ? Jackerts()
                               : Sneakers(),

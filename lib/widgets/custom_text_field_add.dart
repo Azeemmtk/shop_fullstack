@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Addtextfield extends StatelessWidget {
-  Addtextfield({super.key, required this.name, required this.controller});
+  Addtextfield(
+      {super.key, required this.name, required this.controller, this.hint});
 
   String name;
+  String? hint;
   TextEditingController controller;
 
   @override
@@ -11,6 +13,7 @@ class Addtextfield extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        hintText: hint,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
