@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/Screens/authentication/login.dart';
-import 'package:store/Screens/main_screen.dart';
+import 'package:store/Screens/user/main_screen.dart';
 import 'package:store/services/auth_service.dart';
 
 import '../model/auth_model.dart';

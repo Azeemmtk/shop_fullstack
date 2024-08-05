@@ -4,8 +4,8 @@ import 'package:store/widgets/Jackets.dart';
 import 'package:store/widgets/Sneakers.dart';
 import 'package:store/widgets/catogeries.dart';
 
-import '../view_model/home_view_model.dart';
-import '../widgets/allproduct.dart';
+import '../../view_model/home_view_model.dart';
+import '../../widgets/allproduct.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});

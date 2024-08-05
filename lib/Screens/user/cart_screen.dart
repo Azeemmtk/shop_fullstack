@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:store/services/auth_service.dart';
 import 'package:store/view_model/cart_viewmodel.dart';
 
-import '../utils/contants.dart';
+import '../../utils/contants.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

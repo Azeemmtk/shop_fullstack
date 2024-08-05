@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store/services/auth_service.dart';
 
-import '../model/product_model.dart';
-import '../utils/contants.dart';
-import '../view_model/cart_viewmodel.dart';
-import '../view_model/home_view_model.dart';
-import '../widgets/availablesize.dart';
+import '../../model/product_model.dart';
+import '../../utils/contants.dart';
+import '../../view_model/cart_viewmodel.dart';
+import '../../view_model/home_view_model.dart';
+import '../../widgets/availablesize.dart';
 
 class DetailsScreen extends StatefulWidget {
   DetailsScreen({

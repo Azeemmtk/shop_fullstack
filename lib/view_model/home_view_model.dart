@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:store/Screens/admin/admin_home_screen.dart';
-import 'package:store/Screens/main_screen.dart';
+import 'package:store/Screens/user/main_screen.dart';
 import 'package:store/model/product_model.dart';
 import 'package:store/services/product_service.dart';
 

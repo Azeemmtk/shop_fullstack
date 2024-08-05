@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:store/Screens/cart_screen.dart';
-import 'package:store/Screens/profile_screen.dart';
+import 'package:store/Screens/user/cart_screen.dart';
+import 'package:store/Screens/user/profile_screen.dart';
 
-import '../utils/contants.dart';
+import '../../utils/contants.dart';
 import 'favourite_screen.dart';
 import 'home_screen.dart';
 
