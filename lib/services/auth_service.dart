@@ -18,6 +18,10 @@ class Authservice {
     userId = prefs.getString('userId');
   }
 
+  Future<void> loadUserId() async {
+    await _loadUserId();
+  }
+
   Future<void> _saveUserId(String id) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userId', id);

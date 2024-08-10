@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store/utils/contants.dart';
 import 'package:store/widgets/Jackets.dart';
 import 'package:store/widgets/Sneakers.dart';
 import 'package:store/widgets/catogeries.dart';
@@ -43,48 +45,121 @@ class _HomescreenState extends State<Homescreen> {
               ? Center(
                   child: Text('no data'),
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'our products',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Catogeries(
-                            name: 'All products',
-                            index: 0,
-                            isSelected: selectedIndex == 0,
-                            onTap: onCategorySelected,
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'E',
+                              style: TextStyle(
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                            Text(
+                              'SHOP',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: maincolor),
+                            ),
+                          ],
+                        ),
+                        CarouselSlider(
+                          items: [
+                            Image.asset(
+                              'assets/images/c1.png',
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                            Image.asset(
+                              'assets/images/c2.png',
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ],
+                          options: CarouselOptions(
+                            height: 150.0,
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            enableInfiniteScroll: true,
                           ),
-                          Catogeries(
-                            name: 'Jackets',
-                            index: 1,
-                            isSelected: selectedIndex == 1,
-                            onTap: onCategorySelected,
-                          ),
-                          Catogeries(
-                            name: 'Sneaker',
-                            index: 2,
-                            isSelected: selectedIndex == 2,
-                            onTap: onCategorySelected,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      selectedIndex == 0
-                          ? AllProduct()
-                          : selectedIndex == 1
-                              ? Jackerts()
-                              : Sneakers(),
-                    ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'O',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                            Text(
+                              'ur',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: maincolor),
+                            ),
+                            Text(
+                              ' P',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                            Text(
+                              'roducts',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: maincolor),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Catogeries(
+                              name: 'All products',
+                              index: 0,
+                              isSelected: selectedIndex == 0,
+                              onTap: onCategorySelected,
+                            ),
+                            Catogeries(
+                              name: 'Jackets',
+                              index: 1,
+                              isSelected: selectedIndex == 1,
+                              onTap: onCategorySelected,
+                            ),
+                            Catogeries(
+                              name: 'Sneaker',
+                              index: 2,
+                              isSelected: selectedIndex == 2,
+                              onTap: onCategorySelected,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        selectedIndex == 0
+                            ? AllProduct()
+                            : selectedIndex == 1
+                                ? Jackerts()
+                                : Sneakers(),
+                      ],
+                    ),
                   ),
                 ),
     );

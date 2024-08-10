@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store/Screens/admin/admin_home_screen.dart';
+import 'package:store/Screens/admin/order_screen.dart';
 import 'package:store/Screens/authentication/register.dart';
 import 'package:store/view_model/auth_viewmodel.dart';
 
@@ -116,6 +117,13 @@ class _SigninState extends State<Signin> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => AdminHomeScreen(),
+                                    ));
+                              } else if (_usnamecontroller.text == 'staff123' &&
+                                  _passcontroller.text == '123') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Orders(),
                                     ));
                               } else {
                                 value.login(

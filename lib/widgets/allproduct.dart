@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:store/services/auth_service.dart';
+import 'package:store/view_model/favourite_viewmodel.dart';
 import '../Screens/user/details_screen.dart';
+import '../model/product_model.dart';
 import '../utils/contants.dart';
 import '../view_model/home_view_model.dart';
 
@@ -19,19 +21,21 @@ class _AllProductState extends State<AllProduct> {
   void initState() {
     super.initState();
     final provider = context.read<HomeViewModel>();
-    // Initialize the isClickedList based on the number of products
     isClickedList = List<bool>.filled(provider.products.length, false);
   }
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<HomeViewModel>();
+    final favprovider = context.watch<FavouriteViewmodel>();
+    final userid = Authservice();
+    final data = provider.products;
 
     return Container(
-      height: 582,
+      height: 571,
       width: MediaQuery.of(context).size.width,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: (100 / 140),
           crossAxisSpacing: 12,
@@ -39,6 +43,9 @@ class _AllProductState extends State<AllProduct> {
         ),
         itemCount: provider.products.length,
         itemBuilder: (context, index) {
+          final product = data[index];
+          final isFavorited = favprovider.isFavorite(product.sId!);
+
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -52,7 +59,7 @@ class _AllProductState extends State<AllProduct> {
               );
             },
             child: Container(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: secondaycolor,
@@ -67,16 +74,37 @@ class _AllProductState extends State<AllProduct> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              isClickedList[index] = !isClickedList[index];
+                              if (isFavorited) {
+                                favprovider.removeFromFavourite(
+                                  userid: userid.userId!,
+                                  productId: product.sId!,
+                                  context: context,
+                                );
+                              } else {
+                                Productmodel newproduct = Productmodel(
+                                  name: product.name,
+                                  category: product.category,
+                                  colour: product.colour,
+                                  details: product.details,
+                                  price: product.price,
+                                  size: product.size,
+                                  sId: product.sId,
+                                );
+
+                                favprovider.addToFavourite(
+                                  userid: userid.userId!,
+                                  product: newproduct,
+                                  context: context,
+                                );
+                              }
                             });
                           },
                           child: Icon(
-                              isClickedList[index]
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: isClickedList[index]
-                                  ? Colors.red
-                                  : Colors.black),
+                            isFavorited
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: isFavorited ? Colors.red : Colors.black,
+                          ),
                         ),
                       ],
                     ),
@@ -94,12 +122,12 @@ class _AllProductState extends State<AllProduct> {
                     Text(provider.products[index].name ?? 'name'),
                     Text(
                       provider.products[index].colour ?? 'name',
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                     ),
                     Text(
                       '₹ ${provider.products[index].price ?? 'name'}',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

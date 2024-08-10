@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store/Screens/user/cart_screen.dart';
+import 'package:store/Screens/user/chatbot_screen.dart';
 import 'package:store/Screens/user/profile_screen.dart';
 
 import '../../utils/contants.dart';
@@ -20,6 +21,7 @@ class _HomescreenState extends State<Mainscreen> {
   List pages = [
     Homescreen(),
     Favouritrscreen(),
+    ChatbotScreen(), // Add ChatScreen here
     Profilescreen(),
   ];
 
@@ -68,6 +70,8 @@ class _HomescreenState extends State<Mainscreen> {
           });
         },
         selectedItemColor: maincolor,
+        unselectedItemColor: CupertinoColors.inactiveGray,
+        showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(
             label: 'Home',
@@ -76,6 +80,10 @@ class _HomescreenState extends State<Mainscreen> {
           BottomNavigationBarItem(
             label: 'Favorite',
             icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            label: 'Chat', // Add Chat label
+            icon: Icon(CupertinoIcons.chat_bubble_2_fill), // Add Chat icon
           ),
           BottomNavigationBarItem(
             label: 'Profile',
