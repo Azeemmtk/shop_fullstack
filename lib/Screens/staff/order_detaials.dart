@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store/Screens/staff/pendign_screen.dart';
+import 'package:store/Screens/admin/order_screen.dart';
 import 'package:store/view_model/auth_viewmodel.dart';
 
 import '../../utils/contants.dart';
 import '../../view_model/cart_viewmodel.dart';
 
-class OrderDetaials extends StatefulWidget {
-  OrderDetaials(
+class OrderDetails extends StatefulWidget {
+  OrderDetails(
       {super.key,
       required this.index,
       required this.userid,
@@ -18,10 +18,10 @@ class OrderDetaials extends StatefulWidget {
   int screen;
 
   @override
-  State<OrderDetaials> createState() => _OrderDetaialsState();
+  State<OrderDetails> createState() => _OrderDetaialsState();
 }
 
-class _OrderDetaialsState extends State<OrderDetaials> {
+class _OrderDetaialsState extends State<OrderDetails> {
   Future<void>? _loadDataFuture;
 
   @override
@@ -54,9 +54,6 @@ class _OrderDetaialsState extends State<OrderDetaials> {
         ),
         title: Row(
           children: [
-            SizedBox(
-              width: 80,
-            ),
             Text(
               'Details',
               style: TextStyle(
@@ -121,8 +118,11 @@ class _OrderDetaialsState extends State<OrderDetaials> {
                     ),
                   ],
                 ),
+                Divider(
+                  color: maincolor,
+                ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   children: [
@@ -138,7 +138,7 @@ class _OrderDetaialsState extends State<OrderDetaials> {
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 Row(
                   children: [
@@ -159,6 +159,9 @@ class _OrderDetaialsState extends State<OrderDetaials> {
                 Text(
                   'Customer details ',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                ),
+                Divider(
+                  color: maincolor,
                 ),
                 Row(
                   children: [
@@ -266,7 +269,7 @@ class _OrderDetaialsState extends State<OrderDetaials> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PendingScreen(),
+                            builder: (context) => Orders(),
                           ));
                     },
                     child: Text(

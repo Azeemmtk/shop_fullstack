@@ -69,7 +69,7 @@ class _PendingScreenState extends State<CompletedScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OrderDetaials(
+                          builder: (context) => OrderDetails(
                             index: index,
                             userid: cartProvider.deliveredData[index].userid!,
                             screen: 2,

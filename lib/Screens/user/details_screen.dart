@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:store/Screens/user/ar_screen.dart';
 import 'package:store/services/auth_service.dart';
 
 import '../../model/product_model.dart';
@@ -56,15 +58,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
         title: Row(
           children: [
-            SizedBox(
-              width: 80,
-            ),
             Text(
               'Details',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30),
+              style: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
             ),
           ],
         ),
@@ -113,59 +113,43 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   children: [
                     Text(
                       data[widget.index].name ?? 'Name',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                      style: GoogleFonts.lato(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     Text(
                       '₹ ${data[widget.index].price ?? 'price'}.0',
-                      style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.lato(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
                 Text(
-                  data[widget.index].details ?? 'Name',
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Available Sizes',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  data[widget.index].details ?? 'Details',
+                  textAlign: TextAlign.justify,
+                  style: GoogleFonts.openSans(fontSize: 15),
                 ),
                 SizedBox(
                   height: 10,
                 ),
+                Text(
+                  'Sizes',
+                  style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(
+                  height: 9,
+                ),
                 Row(
                   children: [
-                    AvailableSize(
-                      isSelected: selectedIndex == 0,
-                      onTap: () => onSizeSelected(0),
-                      index: widget.index,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    AvailableSize(
-                      isSelected: selectedIndex == 1,
-                      onTap: () => onSizeSelected(1),
-                      index: widget.index,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    AvailableSize(
-                      isSelected: selectedIndex == 2,
-                      onTap: () => onSizeSelected(2),
-                      index: widget.index,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
                     AvailableSize(
                       isSelected: selectedIndex == 3,
                       onTap: () => onSizeSelected(3),
@@ -174,11 +158,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 Text(
-                  'Available Sizes',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  'Colour',
+                  style: GoogleFonts.openSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -189,21 +176,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       radius: 16,
                       backgroundColor: Colors.blue,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CircleAvatar(
-                      radius: 16,
-                      backgroundColor: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CircleAvatar(
-                      radius: 16,
-                      backgroundColor: Colors.yellow,
-                    )
                   ],
+                ),
+                Center(
+                  child: ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: maincolor),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ArScreen(
+                                index: widget.index,
+                                screen: widget.screen,
+                              ),
+                            ));
+                      },
+                      child: Text(
+                        'Try on AR',
+                        style: GoogleFonts.openSans(color: Colors.white),
+                      )),
                 ),
               ],
             ),
@@ -229,10 +221,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 children: [
                   Text(
                     '₹ ${data[widget.index].price ?? 'price'}.0',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(backgroundColor: maincolor),
@@ -255,7 +248,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     },
                     label: Text(
                       'Add to cart',
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.openSans(color: Colors.white),
                     ),
                     icon: Icon(
                       Icons.send,

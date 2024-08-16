@@ -42,7 +42,6 @@ class _PendingScreenState extends State<PendingScreen> {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
-
           if (cartProvider.pendingData.isEmpty) {
             return Center(
               child: Column(
@@ -70,7 +69,7 @@ class _PendingScreenState extends State<PendingScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OrderDetaials(
+                          builder: (context) => OrderDetails(
                             index: index,
                             userid: cartProvider.pendingData[index].userid!,
                             screen: 1,

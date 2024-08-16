@@ -58,7 +58,6 @@ class _AdminScreenState extends State<AdditemScreen> {
         ),
         title: Row(
           children: [
-            SizedBox(width: 70),
             Text(
               'Add items',
               style: TextStyle(

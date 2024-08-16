@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:store/Screens/user/paymeny_screen.dart';
 import 'package:store/services/auth_service.dart';
 import 'package:store/view_model/cart_viewmodel.dart';
 
@@ -54,12 +56,11 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
         ),
-        title: const Row(
+        title: Row(
           children: [
-            SizedBox(width: 110),
             Text(
               'Cart',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -84,19 +85,22 @@ class _CartScreenState extends State<CartScreen> {
               child: Column(
                 children: [
                   SizedBox(height: 200),
-                  SizedBox(
-                      child:
-                          Lottie.asset('assets/lottie/Animation _cart.json')),
+                  Lottie.asset('assets/lottie/Animation _cart.json'),
                   SizedBox(height: 10),
-                  Text('Cart is empty'),
+                  Text(
+                    'Cart is empty',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             );
           } else {
             return Column(
               children: [
-                Container(
-                  height: 670,
+                Expanded(
                   child: ListView.builder(
                     itemCount: cartprovider.cartData.length,
                     itemBuilder: (context, index) {
@@ -105,8 +109,16 @@ class _CartScreenState extends State<CartScreen> {
                         child: Container(
                           height: 110,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
                           ),
                           child: Row(
                             children: [
@@ -114,21 +126,22 @@ class _CartScreenState extends State<CartScreen> {
                                 height: 100,
                                 width: 100,
                                 child: Image.network(
-                                    cartprovider.cartData[index].image ??
-                                        'image'),
+                                  cartprovider.cartData[index].image ?? 'image',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              const SizedBox(width: 5),
+                              const SizedBox(width: 10),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const SizedBox(height: 5),
+                                    const SizedBox(height: 10),
                                     Row(
                                       children: [
                                         Text(
                                           cartprovider.cartData[index].name ??
                                               'name',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -136,7 +149,7 @@ class _CartScreenState extends State<CartScreen> {
                                         Spacer(),
                                         Text(
                                           'Size: ',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -145,17 +158,16 @@ class _CartScreenState extends State<CartScreen> {
                                         Text(
                                           cartprovider.cartData[index].size
                                               .toString(),
-                                          style: TextStyle(fontSize: 17),
+                                          style: GoogleFonts.lato(fontSize: 17),
                                         ),
-                                        SizedBox(width: 10),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        const Text(
+                                        Text(
                                           'Qty:',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -164,12 +176,12 @@ class _CartScreenState extends State<CartScreen> {
                                         Text(
                                           cartprovider.cartItems[index].quantity
                                               .toString(),
-                                          style: TextStyle(fontSize: 17),
+                                          style: GoogleFonts.lato(fontSize: 17),
                                         ),
-                                        SizedBox(width: 20),
-                                        const Text(
+                                        Spacer(),
+                                        Text(
                                           '₹: ',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -181,9 +193,9 @@ class _CartScreenState extends State<CartScreen> {
                                                           .quantity)!
                                                       .toInt())
                                               .toString(),
-                                          style: TextStyle(fontSize: 18),
+                                          style: GoogleFonts.lato(fontSize: 18),
                                         ),
-                                        const Spacer(),
+                                        Spacer(),
                                         InkWell(
                                           onTap: () {
                                             cartprovider.decreaseQuantity(
@@ -191,10 +203,12 @@ class _CartScreenState extends State<CartScreen> {
                                                     .cartItems[index].sId!,
                                                 context: context);
                                           },
-                                          child: Icon(Icons.remove_circle,
-                                              color: maincolor),
+                                          child: Icon(
+                                            Icons.remove_circle,
+                                            color: maincolor,
+                                          ),
                                         ),
-                                        const SizedBox(width: 25),
+                                        const SizedBox(width: 15),
                                         InkWell(
                                           onTap: () {
                                             cartprovider.increaseQuantity(
@@ -202,18 +216,19 @@ class _CartScreenState extends State<CartScreen> {
                                                     .cartItems[index].sId!,
                                                 context: context);
                                           },
-                                          child: Icon(Icons.add_circle,
-                                              color: maincolor),
+                                          child: Icon(
+                                            Icons.add_circle,
+                                            color: maincolor,
+                                          ),
                                         ),
-                                        const SizedBox(width: 5),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        const Text(
+                                        Text(
                                           'Status: ',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -222,15 +237,12 @@ class _CartScreenState extends State<CartScreen> {
                                           cartprovider
                                                   .cartItems[index].status ??
                                               'status..',
-                                          style: TextStyle(
+                                          style: GoogleFonts.lato(
                                               fontSize: 18, color: maincolor),
                                         ),
-                                        const Spacer(),
+                                        Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            print(index);
-                                            print(cartprovider
-                                                .cartData[index].sId);
                                             cartprovider.removeProductFromCart(
                                                 userid: authprovider.userId!,
                                                 productId: cartprovider
@@ -241,10 +253,11 @@ class _CartScreenState extends State<CartScreen> {
                                                   .removeAt(index);
                                             });
                                           },
-                                          child: const Icon(Icons.delete,
-                                              color: Colors.red),
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
                                         ),
-                                        const SizedBox(width: 5),
                                       ],
                                     ),
                                   ],
@@ -258,35 +271,42 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width,
+                  width: double.infinity,
                   height: 93,
                   color: secondaycolor.withOpacity(0.6),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Row(
-                        children: [
-                          SizedBox(width: 30),
-                          Text(
-                            '₹${totalAmount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          '₹${totalAmount.toStringAsFixed(2)}',
+                          style: GoogleFonts.lato(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: maincolor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          Spacer(),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: maincolor),
-                              onPressed: () {},
-                              child: Text(
-                                'Order Products',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                          SizedBox(width: 10),
-                        ],
-                      ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PaymentDetails(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Order Products',
+                            style: GoogleFonts.lato(color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

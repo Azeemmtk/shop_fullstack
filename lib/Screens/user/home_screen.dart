@@ -156,7 +156,7 @@ class _HomescreenState extends State<Homescreen> {
                         selectedIndex == 0
                             ? AllProduct()
                             : selectedIndex == 1
-                                ? Jackerts()
+                                ? Jackets()
                                 : Sneakers(),
                       ],
                     ),

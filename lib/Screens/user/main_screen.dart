@@ -21,7 +21,7 @@ class _HomescreenState extends State<Mainscreen> {
   List pages = [
     Homescreen(),
     Favouritrscreen(),
-    ChatbotScreen(), // Add ChatScreen here
+    ChatbotScreen(),
     Profilescreen(),
   ];
 
@@ -62,36 +62,63 @@ class _HomescreenState extends State<Mainscreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentindux,
-        onTap: (value) {
-          setState(() {
-            currentindux = value;
-          });
-        },
-        selectedItemColor: maincolor,
-        unselectedItemColor: CupertinoColors.inactiveGray,
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(Icons.home_filled),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
-          BottomNavigationBarItem(
-            label: 'Favorite',
-            icon: Icon(Icons.favorite),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
-          BottomNavigationBarItem(
-            label: 'Chat', // Add Chat label
-            icon: Icon(CupertinoIcons.chat_bubble_2_fill), // Add Chat icon
+          child: BottomNavigationBar(
+            currentIndex: currentindux,
+            onTap: (value) {
+              setState(() {
+                currentindux = value;
+              });
+            },
+            selectedItemColor: maincolor,
+            unselectedItemColor: CupertinoColors.inactiveGray,
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(Icons.home_filled),
+              ),
+              BottomNavigationBarItem(
+                label: 'Favorite',
+                icon: Icon(Icons.favorite),
+              ),
+              BottomNavigationBarItem(
+                label: 'Chat',
+                icon: Icon(CupertinoIcons.chat_bubble_2_fill),
+              ),
+              BottomNavigationBarItem(
+                label: 'Profile',
+                icon: Icon(CupertinoIcons.profile_circled),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            label: 'Profile',
-            icon: Icon(CupertinoIcons.profile_circled),
-          ),
-        ],
+        ),
       ),
-      body: pages[currentindux],
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 300),
+        child: pages[currentindux],
+      ),
     );
   }
 }

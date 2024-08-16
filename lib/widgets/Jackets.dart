@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../Screens/user/details_screen.dart';
@@ -8,14 +10,14 @@ import '../utils/contants.dart';
 import '../view_model/favourite_viewmodel.dart';
 import '../view_model/home_view_model.dart';
 
-class Jackerts extends StatefulWidget {
-  const Jackerts({super.key});
+class Jackets extends StatefulWidget {
+  const Jackets({super.key});
 
   @override
-  State<Jackerts> createState() => _JackertsState();
+  State<Jackets> createState() => _JacketsState();
 }
 
-class _JackertsState extends State<Jackerts> {
+class _JacketsState extends State<Jackets> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<HomeViewModel>();
@@ -58,6 +60,8 @@ class _JackertsState extends State<Jackerts> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start, // Align text to the start
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -99,26 +103,51 @@ class _JackertsState extends State<Jackerts> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 130,
-                      width: 130,
-                      child: Hero(
-                        tag: product.image!,
-                        child: Image.network(
-                          product.image ?? 'image',
-                          fit: BoxFit.contain,
+                    Center(
+                      child: SizedBox(
+                        height: 113,
+                        width: 113,
+                        child: Hero(
+                          tag: product.image!,
+                          child: Image.network(
+                            product.image ?? 'image',
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),
-                    Text(product.name ?? 'name'),
+                    Divider(),
                     Text(
-                      product.colour ?? 'colour',
-                      style: const TextStyle(color: Colors.red),
+                      product.name ?? 'name',
+                      style: GoogleFonts.lora(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
-                      '₹ ${product.price ?? 'price'}',
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold),
+                      product.colour ?? 'colour',
+                      style: GoogleFonts.openSans(),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '₹: ${product.price ?? 'price'}  ',
+                          style: GoogleFonts.openSans(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '₹: ${product.price! + 500}',
+                          style: GoogleFonts.openSans(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: CupertinoColors.inactiveGray,
+                              decoration: TextDecoration.lineThrough,
+                              decorationColor: CupertinoColors.inactiveGray,
+                              decorationThickness: 3),
+                        ),
+                      ],
                     ),
                   ],
                 ),

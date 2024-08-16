@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:store/Screens/admin/coplaint_screen.dart';
 import 'package:store/Screens/admin/edit_screen.dart';
 import 'package:store/Screens/authentication/login.dart';
 import 'package:store/view_model/home_view_model.dart';
@@ -90,6 +91,25 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               ),
             ),
           ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Complaint(),
+                  ));
+            },
+            leading: Icon(
+              FontAwesomeIcons.comment,
+              color: maincolor,
+            ),
+            title: Text(
+              'Complaints',
+              style: TextStyle(
+                color: maincolor,
+              ),
+            ),
+          ),
         ],
       )),
       appBar: AppBar(
@@ -120,7 +140,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               'All Products',
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
                 fontSize: 30,
               ),
             ),
