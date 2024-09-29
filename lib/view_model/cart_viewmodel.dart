@@ -48,7 +48,7 @@ class CartViewModel extends ChangeNotifier {
     try {
       // Fetch all carts
       allcartData = await _cartService.viewAllCarts();
-      print('viewss------$allcartData');
+      print('Fetched all carts: $allcartData');
 
       // Clear previous lists
       deliveredData.clear();
@@ -58,13 +58,18 @@ class CartViewModel extends ChangeNotifier {
       for (var cart in allcartData) {
         if (cart.status == 'Delivered') {
           deliveredData.add(cart);
+          print('====----${deliveredData[0].productid?.name}');
         } else {
           pendingData.add(cart);
         }
       }
 
+      print('Delivered data: $deliveredData');
+      print('Pending data: $pendingData');
+
       notifyListeners();
     } catch (e) {
+      print('Error fetching carts: $e');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Failed to fetch all carts: $e"),
       ));
@@ -86,7 +91,9 @@ class CartViewModel extends ChangeNotifier {
       cartData.clear();
       // Populate cartData with the latest items
       for (var cartItem in cartItems) {
-        cartData.add(cartItem.productid!);
+        if (cartItem.productid != null) {
+          cartData.add(cartItem.productid!);
+        }
       }
       notifyListeners();
     } catch (e) {
@@ -110,8 +117,11 @@ class CartViewModel extends ChangeNotifier {
       notifyListeners();
       await _cartService.removeProductFromCart(
           userid: userid, productId: productId);
-      // Update the local cartItems list after successful removal
+      // Update the local cartItems and cartData lists after successful removal
       cartItems.removeWhere((item) => item.productid?.sId == productId);
+      cartData.removeWhere((product) => product.sId == productId);
+      notifyListeners();
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Product removed from cart successfully"),
       ));

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store/Screens/authentication/login.dart';
 import 'package:store/utils/contants.dart';
 import 'package:store/view_model/cart_viewmodel.dart';
 
@@ -52,28 +51,17 @@ class _ProfilescreenState extends State<Profilescreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: maincolor, width: 5),
-                      image: DecorationImage(
-                        image: AssetImage(
-                            'assets/images/profile_placeholder.png'), // Placeholder image
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.person,
-                      size: 100,
-                      color: Colors.white,
-                    ),
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundImage: AssetImage('assets/images/profile.png'),
+                    backgroundColor: Colors.transparent,
                   ),
                 ),
                 SizedBox(height: 20),
                 Card(
-                  elevation: 5,
+                  elevation: 10,
+                  color: secindLighter,
+                  shadowColor: maincolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -142,6 +130,8 @@ class _ProfilescreenState extends State<Profilescreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: maincolor,
+                      elevation: 7,
+                      shadowColor: maincolor,
                       padding:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                       shape: RoundedRectangleBorder(
@@ -150,11 +140,10 @@ class _ProfilescreenState extends State<Profilescreen> {
                     ),
                     onPressed: () {
                       cart.cartData.clear();
-                      Navigator.push(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => Signin(),
-                        ),
+                        '/login',
+                        (route) => false,
                       );
                     },
                     child: Text(

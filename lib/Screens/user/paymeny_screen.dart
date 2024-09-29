@@ -38,14 +38,28 @@ class _PaymentDetailsState extends State<PaymentDetails> {
           ),
           actions: <Widget>[
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: maincolor),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secindLighter,
+                elevation: 3,
+                shadowColor: maincolor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: maincolor),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secindLighter,
+                elevation: 3,
+                shadowColor: maincolor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               onPressed: () {
                 // Add address logic
                 Navigator.of(context).pop();
@@ -83,14 +97,28 @@ class _PaymentDetailsState extends State<PaymentDetails> {
           ),
           actions: <Widget>[
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: maincolor),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secindLighter,
+                elevation: 3,
+                shadowColor: maincolor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: maincolor),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secindLighter,
+                elevation: 3,
+                shadowColor: maincolor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               onPressed: () {
                 // Payment method is already set to 'cash_on_delivery'
                 Navigator.of(context).pop();
@@ -155,7 +183,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                     fontSize: 23,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Airbnb",
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -176,52 +204,59 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(right: 20, left: 20, top: 10),
-                        child: Container(
-                          height: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                          ),
-                          child: ListView.builder(
-                            itemCount: cartprovider.cartData.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 16.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      cartprovider.cartData[index].name ??
-                                          'name',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                            const EdgeInsets.only(right: 10, left: 10, top: 10),
+                        child: Card(
+                          color: secindLighter,
+                          elevation: 5,
+                          shadowColor: maincolor,
+                          child: Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                            ),
+                            child: ListView.builder(
+                              itemCount: cartprovider.cartData.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 16.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        cartprovider.cartData[index].name ??
+                                            'name',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    const Spacer(),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Qty:',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
+                                      const Spacer(),
+                                      Row(
+                                        children: [
+                                          const Text(
+                                            'Qty:',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          cartprovider.cartItems[index].quantity
-                                              .toString(),
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            cartprovider
+                                                .cartItems[index].quantity
+                                                .toString(),
+                                            style: TextStyle(fontSize: 17),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -231,9 +266,9 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                           style: TextStyle(color: Colors.grey),
                         ),
                       ),
-                      Container(width: 300, child: Divider()),
+                      Container(width: 350, child: Divider()),
                       Padding(
-                        padding: EdgeInsets.only(right: 20, left: 30),
+                        padding: EdgeInsets.only(right: 10, left: 20),
                         child: Row(
                           children: [
                             Text(
@@ -244,26 +279,28 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                   color: Colors.black),
                             ),
                             SizedBox(
-                              width: 133,
+                              width: 195,
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: maincolor,
+                                backgroundColor: secindLighter,
+                                elevation: 3,
+                                shadowColor: maincolor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                               onPressed: _showAddressDialog,
-                              child: const Text(
+                              child: Text(
                                 "Add",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: maincolor),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 20, left: 30),
+                        padding: EdgeInsets.only(right: 20, left: 20),
                         child: Row(
                           children: [
                             Text(
@@ -274,28 +311,31 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                   color: Colors.black),
                             ),
                             SizedBox(
-                              width: 116,
+                              width: 175,
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: maincolor,
+                                backgroundColor: secindLighter,
+                                elevation: 3,
+                                shadowColor: maincolor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                               onPressed: _showPaymentDialog,
-                              child: const Text(
+                              child: Text(
                                 "Select",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: maincolor),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Container(width: 300, child: Divider()),
+                      Container(width: 350, child: Divider()),
                       Padding(
-                        padding: EdgeInsets.all(30),
+                        padding: EdgeInsets.only(top: 10, left: 20),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
@@ -307,7 +347,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                       color: Colors.grey),
                                 ),
                                 SizedBox(
-                                  width: 120,
+                                  width: 180,
                                 ),
                                 Text(
                                   '₹${totalAmount.toStringAsFixed(2)}',
@@ -331,7 +371,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                       color: Colors.grey),
                                 ),
                                 SizedBox(
-                                  width: 125,
+                                  width: 225,
                                 ),
                                 Text(
                                   "₹${deliveryCharge.toStringAsFixed(1)}",
@@ -345,7 +385,10 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             SizedBox(
                               height: 10,
                             ),
-                            Container(width: 300, child: Divider()),
+                            Container(width: 350, child: Divider()),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               children: [
                                 Text(
@@ -356,7 +399,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                       color: maincolor),
                                 ),
                                 SizedBox(
-                                  width: 95,
+                                  width: 160,
                                 ),
                                 Text(
                                   "\₹${(totalAmount + deliveryCharge).toStringAsFixed(2)}",
@@ -369,6 +412,9 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             ),
                           ],
                         ),
+                      ),
+                      SizedBox(
+                        height: 40,
                       ),
                       Text(
                         "ThankYou.Enjoy.Explore",
@@ -403,15 +449,15 @@ class _PaymentDetailsState extends State<PaymentDetails> {
               height: 45,
               width: 320,
               decoration: BoxDecoration(
-                color: maincolor,
+                color: secindLighter,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.white70),
+                border: Border.all(color: maincolor),
               ),
               child: Center(
                 child: Text(
                   "Place Order",
                   style: TextStyle(
-                    color: Colors.white70,
+                    color: maincolor,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),

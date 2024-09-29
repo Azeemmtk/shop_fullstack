@@ -84,21 +84,10 @@ class _DetailsScreenState extends State<EditScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [maincolor, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-        title: Center(
-          child: Text(
-            'Update',
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
-          ),
+        title: Text(
+          'Update',
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
         ),
       ),
       body: SingleChildScrollView(
@@ -132,7 +121,7 @@ class _DetailsScreenState extends State<EditScreen> {
               width: double.infinity,
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: CupertinoColors.lightBackgroundGray,
+                color: secindLighter,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),

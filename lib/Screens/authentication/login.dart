@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store/Screens/admin/admin_home_screen.dart';
-import 'package:store/Screens/admin/order_screen.dart';
 import 'package:store/Screens/authentication/register.dart';
 import 'package:store/view_model/auth_viewmodel.dart';
 
@@ -24,7 +22,6 @@ class _SigninState extends State<Signin> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -111,24 +108,25 @@ class _SigninState extends State<Signin> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF5B9EE1)),
                             onPressed: () {
-                              if (_usnamecontroller.text == 'admin123' &&
-                                  _passcontroller.text == '123') {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => AdminHomeScreen(),
-                                    ));
-                              } else if (_usnamecontroller.text == 'staff123' &&
-                                  _passcontroller.text == '123') {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Orders(),
-                                    ));
+                              if (_usnamecontroller.text.trim() == 'admin123' &&
+                                  _passcontroller.text.trim() == '123') {
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  '/adminHome',
+                                  (route) => false,
+                                );
+                              } else if (_usnamecontroller.text.trim() ==
+                                      'staff123' &&
+                                  _passcontroller.text.trim() == '123') {
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  '/orders',
+                                  (route) => false,
+                                );
                               } else {
                                 value.login(
-                                    username: _usnamecontroller.text,
-                                    password: _passcontroller.text,
+                                    username: _usnamecontroller.text.trim(),
+                                    password: _passcontroller.text.trim(),
                                     context: context);
                               }
                             },

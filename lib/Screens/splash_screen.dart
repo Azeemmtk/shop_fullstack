@@ -11,6 +11,12 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   @override
+  void initState() {
+    gotoonbord();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF4d5468),
@@ -40,5 +46,14 @@ class _SplashState extends State<Splash> {
         ),
       ),
     );
+  }
+
+  Future<void> gotoonbord() async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Onbord(),
+        ));
   }
 }

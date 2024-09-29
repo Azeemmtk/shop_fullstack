@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:store/Screens/admin/admin_home_screen.dart';
-import 'package:store/Screens/user/main_screen.dart';
 import 'package:store/model/product_model.dart';
 import 'package:store/services/product_service.dart';
 
@@ -27,8 +26,7 @@ class HomeViewModel extends ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Product Added Successfully"),
       ));
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Mainscreen()));
+      Navigator.pop(context);
       loading = false;
       notifyListeners();
     } catch (e) {

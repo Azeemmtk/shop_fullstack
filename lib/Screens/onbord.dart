@@ -59,9 +59,9 @@ class _Onbord1State extends State<Onbord> {
                   children: List.generate(3, (index) {
                     return AnimatedContainer(
                       duration: Duration(milliseconds: 200),
-                      margin: EdgeInsets.symmetric(horizontal: 4.0),
-                      width: _currentPage == index ? 40.0 : 10.0,
-                      height: 5.0,
+                      margin: EdgeInsets.symmetric(horizontal: 2.0),
+                      width: _currentPage == index ? 45.0 : 12.0,
+                      height: 4.0,
                       decoration: BoxDecoration(
                         color:
                             _currentPage == index ? Colors.blue : Colors.grey,

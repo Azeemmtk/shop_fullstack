@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:store/utils/contants.dart';
 import 'package:store/widgets/custom_text_field_add.dart';
 
 import '../../model/product_model.dart';
-import '../../utils/contants.dart';
 import '../../view_model/home_view_model.dart';
 
 class AdditemScreen extends StatefulWidget {
@@ -47,15 +47,6 @@ class _AdminScreenState extends State<AdditemScreen> {
     final provider = context.watch<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [maincolor, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
         title: Row(
           children: [
             Text(
@@ -242,10 +233,14 @@ class _AdminScreenState extends State<AdditemScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: maincolor,
+                              elevation: 7,
+                              shadowColor: maincolor),
                           onPressed: () {
                             Productmodel newproduct = Productmodel(
                               name: _nameController.text,
@@ -261,7 +256,10 @@ class _AdminScreenState extends State<AdditemScreen> {
                                 imageFile: File(image!.path),
                                 context: context);
                           },
-                          child: Text('Submit'),
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(color: secindLighter),
+                          ),
                         ),
                       ),
                     ],

@@ -29,23 +29,21 @@ class _HomescreenState extends State<Mainscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [maincolor, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             Text(
-              'Shop',
+              currentindux == 0
+                  ? 'Explore'
+                  : currentindux == 1
+                      ? 'Favourite'
+                      : currentindux == 2
+                          ? 'chat support'
+                          : 'Profile',
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30),
+                  fontSize: 25),
             ),
             Spacer(),
             IconButton(
@@ -74,8 +72,8 @@ class _HomescreenState extends State<Mainscreen> {
             ),
           ],
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
         ),
         child: ClipRRect(

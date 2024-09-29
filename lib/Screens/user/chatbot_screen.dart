@@ -19,7 +19,15 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DashChat(
-          currentUser: currentuser, onSend: _sendmessage, messages: messages),
+        currentUser: currentuser,
+        onSend: _sendmessage,
+        messages: messages,
+        inputOptions: InputOptions(
+            inputDecoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'type a message')),
+      ),
     );
   }
 

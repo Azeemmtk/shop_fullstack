@@ -43,15 +43,6 @@ class _OrderDetaialsState extends State<OrderDetails> {
 
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [maincolor, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
         title: Row(
           children: [
             Text(
@@ -109,12 +100,12 @@ class _OrderDetaialsState extends State<OrderDetails> {
                     Text(
                       data[widget.index].productid?.name ?? 'Name',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
                     Text(
                       '₹ ${data[widget.index].productid?.price ?? 'price'}.0',
                       style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -122,7 +113,7 @@ class _OrderDetaialsState extends State<OrderDetails> {
                   color: maincolor,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -154,7 +145,7 @@ class _OrderDetaialsState extends State<OrderDetails> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Text(
                   'Customer details ',
@@ -162,6 +153,9 @@ class _OrderDetaialsState extends State<OrderDetails> {
                 ),
                 Divider(
                   color: maincolor,
+                ),
+                SizedBox(
+                  height: 15,
                 ),
                 Row(
                   children: [
@@ -209,11 +203,7 @@ class _OrderDetaialsState extends State<OrderDetails> {
             width: double.infinity,
             height: 63.5,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [maincolor, Colors.black],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: maincolor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -228,7 +218,7 @@ class _OrderDetaialsState extends State<OrderDetails> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: secondaycolor),
+                        backgroundColor: secindLighter),
                     onPressed: () async {
                       try {
                         // Call the updateCart method to change status to "Order taken"
@@ -251,7 +241,7 @@ class _OrderDetaialsState extends State<OrderDetails> {
                   Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: secondaycolor),
+                        backgroundColor: secindLighter),
                     onPressed: () async {
                       try {
                         // Call the updateCart method to change status to "Order taken"

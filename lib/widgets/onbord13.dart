@@ -35,8 +35,9 @@ class _Onbord13State extends State<Onbord13> {
           ),
           Positioned(
             top: 100,
-            left: 0,
-            child: Image.asset(widget.image),
+            left: 15,
+            child: SizedBox(
+                height: 350, width: 350, child: Image.asset(widget.image)),
           ),
           Positioned(
             top: 190,
@@ -59,18 +60,18 @@ class _Onbord13State extends State<Onbord13> {
             child: Image.asset('assets/images/dots.png'),
           ),
           Positioned(
-            top: 550,
+            top: 500,
             left: 30,
             child: Text(
               widget.title,
               style: TextStyle(
                   fontFamily: 'Airbun',
-                  fontSize: 40,
+                  fontSize: 45,
                   fontWeight: FontWeight.bold),
             ),
           ),
           Positioned(
-            top: 670,
+            top: 630,
             left: 30,
             child: Text(
               widget.sub,

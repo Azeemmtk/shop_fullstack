@@ -54,16 +54,16 @@ class _HomescreenState extends State<Homescreen> {
                         Row(
                           children: [
                             Text(
-                              'E',
+                              'O',
                               style: TextStyle(
-                                  fontSize: 40,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red),
                             ),
                             Text(
-                              'SHOP',
+                              'ffers..',
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: maincolor),
                             ),
@@ -97,28 +97,28 @@ class _HomescreenState extends State<Homescreen> {
                             Text(
                               'O',
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red),
                             ),
                             Text(
                               'ur',
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: maincolor),
                             ),
                             Text(
                               ' P',
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red),
                             ),
                             Text(
                               'roducts',
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: maincolor),
                             ),

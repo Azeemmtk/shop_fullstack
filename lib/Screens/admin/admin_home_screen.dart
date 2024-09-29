@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:store/Screens/admin/coplaint_screen.dart';
 import 'package:store/Screens/admin/edit_screen.dart';
-import 'package:store/Screens/authentication/login.dart';
 import 'package:store/view_model/home_view_model.dart';
 
 import '../../utils/contants.dart';
@@ -39,16 +38,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           SizedBox(
             height: 110,
             child: DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    maincolor,
-                    Colors.black,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
+              decoration: BoxDecoration(color: maincolor),
               child: Text(
                 'Menu',
                 style: TextStyle(
@@ -125,15 +115,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             },
           ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [maincolor, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
         title: Row(
           children: [
             Text(
@@ -141,32 +122,21 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
-                fontSize: 30,
+                fontSize: 20,
               ),
             ),
             Spacer(),
-            TextButton(
+            IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Signin(),
-                    ));
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/login',
+                  (route) => false,
+                );
               },
-              child: Row(
-                children: [
-                  Text(
-                    'Log out',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  Icon(
-                    Icons.logout,
-                    color: Colors.red,
-                  )
-                ],
+              icon: Icon(
+                Icons.logout,
+                color: Colors.red[300],
               ),
             ),
           ],
@@ -184,14 +154,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         child: Icon(
           Icons.add,
           color: Colors.white,
-          size: 40,
+          size: 35,
         ),
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 0,
-          ),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(8.0),
@@ -214,49 +181,53 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                     );
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: secondaycolor,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(
-                                provider.products[index].category == 'jacket'
-                                    ? FontAwesomeIcons.shirt
-                                    : FontAwesomeIcons.shoePrints,
-                                color: maincolor,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 130,
-                            width: 130,
-                            child: Hero(
-                              tag: provider.products[index].image!,
-                              child: Image.network(
-                                provider.products[index].image ?? 'name',
-                                fit: BoxFit.contain,
+                  child: Card(
+                    color: secondaycolor,
+                    elevation: 7,
+                    shadowColor: maincolor,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  provider.products[index].category == 'jacket'
+                                      ? FontAwesomeIcons.shirt
+                                      : FontAwesomeIcons.shoePrints,
+                                  color: maincolor,
+                                  size: 15,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 130,
+                              width: 130,
+                              child: Hero(
+                                tag: provider.products[index].image!,
+                                child: Image.network(
+                                  provider.products[index].image ?? 'name',
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(provider.products[index].name ?? 'name'),
-                          Text(
-                            provider.products[index].colour ?? 'name',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                          Text(
-                            '₹ ${provider.products[index].price ?? 'name'}',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                            Text(provider.products[index].name ?? 'name'),
+                            Text(
+                              provider.products[index].colour ?? 'name',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            Text(
+                              '₹ ${provider.products[index].price ?? 'name'}',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

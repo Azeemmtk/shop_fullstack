@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:store/utils/contants.dart';
 
 import '../../services/auth_service.dart';
 import '../../view_model/favourite_viewmodel.dart';
@@ -69,47 +70,53 @@ class _FavouritrscreenState extends State<Favouritrscreen> {
                 final product = favProvider.favData[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        SizedBox(
-                          height: 70,
-                          width: 70,
-                          child: Image.network(
-                            product.image ?? 'https://via.placeholder.com/100',
-                            fit: BoxFit.cover,
+                  child: Card(
+                    elevation: 7,
+                    shadowColor: maincolor,
+                    color: secondaycolor,
+                    child: Container(
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 10),
-                              Text(
-                                product.name ?? 'Name',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                          SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image.network(
+                              product.image ??
+                                  'https://via.placeholder.com/100',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 10),
+                                Text(
+                                  product.name ?? 'Name',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                'Size: ${product.size ?? 'N/A'}',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                            ],
+                                SizedBox(height: 5),
+                                Text(
+                                  'Size: ${product.size ?? 'N/A'}',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
